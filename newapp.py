@@ -1,3 +1,4 @@
+
 import pickle
 import streamlit as st
 import urllib.request
@@ -15,79 +16,6 @@ except Exception as e:
     model = None
     print(f"Error loading model: {e}")
 
-# Streamlit app
-def main():
-    st.title("Survived or Not")
-    
-    # Input variables
-    Pclass = st.text_input("Pclass (Passenger Class)")
-    Age = st.text_input("Age")
-    SibSp = st.text_input("Siblings/Spouses Aboard")
-    Parch = st.text_input("Parents/Children Aboard")
-    Fare = st.text_input("Fare")
-    Sex_male = st.text_input("Sex (Male: 1, Female: 0)")
-    Embarked_Q = st.text_input("Embarked at Queenstown (1 for Yes, 0 for No)")
-    Embarked_S = st.text_input("Embarked at Southampton (1 for Yes, 0 for No)")
-
-    # Prediction
-    if st.button("Predict"):
-        if model is None:
-            st.error("Model could not be loaded. Please check the file URL or format.")
-            return
-        
-        try:
-            # Ensure inputs are converted to floats
-            inputs = [float(Pclass), float(Age), float(SibSp), float(Parch), float(Fare), 
-                      float(Sex_male), float(Embarked_Q), float(Embarked_S)]
-            
-            # Make prediction
-            prediction = model.predict([inputs])
-            st.success(f"The prediction is: {'Survived' if prediction[0] == 1 else 'Did not survive'}")
-        except ValueError:
-            st.error("Please enter valid numeric values for all fields.")
-        except Exception as e:
-            st.error(f"An error occurred during prediction: {e}")
-
-if __name__ == '__main__':
-    main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-
-import pickle
-import streamlit as st
-import pickle
-
-# URL to the raw model file on GitHub
-import urllib.request
-
-url = "https://raw.githubusercontent.com/umeshpardeshi9545/titanic-survival-model/main/Titanic_model.pkl"
-
-with urllib.request.urlopen(url) as response:
-    model = pickle.load(response)
 # Load the model with a corrected file path
 #model = pickle.load(open('Titanic_model.pkl', "rb"))
 
