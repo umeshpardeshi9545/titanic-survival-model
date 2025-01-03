@@ -5,7 +5,8 @@ import pickle
 # URL to the raw model file on GitHub
 import urllib.request
 
-url = "https://github.com/umeshpardeshi9545/titanic-survival-model/blob/main/Titanic_model.pkl"
+url = "https://raw.githubusercontent.com/umeshpardeshi9545/titanic-survival-model/main/Titanic_model.pkl"
+
 with urllib.request.urlopen(url) as response:
     model = pickle.load(response)
 # Load the model with a corrected file path
